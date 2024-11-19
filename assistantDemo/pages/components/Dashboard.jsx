@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Chat from './Chat'
 import ChatProvider from './ChatProvider';
-import styled, { ThemeProvider } from 'styled-components';
+
 import { Button } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faComments, faUser, faTimeline } from '@fortawesome/free-solid-svg-icons';
