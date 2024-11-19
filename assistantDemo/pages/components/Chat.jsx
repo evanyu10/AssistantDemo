@@ -10,8 +10,8 @@ const Chat = () => {
     const [isEditing, setIsEditing] = useState(false);
 
     const openai = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY || "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",
-        dangerouslyAllowBrowser: true,
+        apiKey: process.env.OPENAI_API_KEY,
+        dangerouslyAllowBrowser: false,
     });
 
     const handleInputChange = (e) => {
