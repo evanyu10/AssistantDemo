@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import OpenAI from 'openai';
 import { ExpandingTextArea } from './ExpandingTextArea';
-import Recorder from './Recorder';
+
 
 const Chat = () => {
     const [messages, setMessages] = useState([]);
@@ -17,28 +16,11 @@ const Chat = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
-    // Transcription function
-    const uploadAudio = async (blob) => {
-        const file = new File([blob], "audio.webm", { type: 'audio/webm' });
-
-        if (fileRef.current) {
-            const dataTransfer = new DataTransfer();
-            dataTransfer.items.add(file);
-            fileRef.current.files = dataTransfer.files;
-
-            if (submitButtonRef.current) {
-                submitButtonRef.current.click();
-            }
-        }
-    };
+   
 
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
-
-    const openai = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY,
-    });
 
     const handleInputChange = (e) => {
         setInput(e.target.value);
@@ -50,21 +32,22 @@ const Chat = () => {
         const userMessage = { role: 'user', content: input };
         setMessages([...messages, userMessage]);
         setInput('');
-        setIsLoading(true); // Set loading state to true after adding user's message
+        setIsLoading(true);
 
-        const response = await openai.chat.completions.create({
-            model: 'gpt-3.5-turbo',
-            messages: [
-                { role: "system", content: "You are a helpful assistant." },
-                { role: 'user', content: input },
-            ],
+        const response = await fetch('/api/openai', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ input })
         });
 
-        const botMessage = { role: 'bot', content: response.choices[0].message.content };
+        const data = await response.json();
+        const botMessage = { role: 'bot', content: data.botMessage };
 
         setTimeout(() => {
             setMessages((prevMessages) => [...prevMessages, botMessage]);
-            setIsLoading(false); // Set loading state to false after 1 second
+            setIsLoading(false);
         }, 1000);
     };
 
@@ -102,9 +85,8 @@ const Chat = () => {
             </div>
 
             <div>
-                
                 <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '10px', padding: '10px', boxSizing: 'border-box' }}>
-                <Recorder uploadAudio={uploadAudio} />
+                  
                     <ExpandingTextArea
                         isEditing={isEditing}
                         setIsEditing={setIsEditing}

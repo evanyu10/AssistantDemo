@@ -1,5 +1,6 @@
 import React from 'react';
 
+//reusable component I made
 interface Props {
     isEditing: boolean;
     setIsEditing: (isEditing: boolean) => void;

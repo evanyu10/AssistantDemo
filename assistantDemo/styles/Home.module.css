@@ -19,7 +19,10 @@
   overflow: hidden;  /* Ensures content doesn't overflow the dashboard bounds */
 }
 
-
+.blur { 
+  filter: blur(5px); 
+  pointer-events: none; /* Ensure interactions are blocked when blurred */ 
+}
 
 
 .title a {

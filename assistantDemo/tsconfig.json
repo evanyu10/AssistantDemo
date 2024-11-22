@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/components/ExpandingTextArea.jsx", "pages/components/ExpandingTextArea.jsx", "pages/components/Recorder.jsx"  ],
   "exclude": [
     "node_modules"
   ]
