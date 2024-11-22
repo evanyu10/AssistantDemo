@@ -1,4 +1,4 @@
-# Thank you for checking out my demo!#
+# Thank you for checking out my demo!
 If you would like to try it, here are the steps to get it up and running.
 
 1. Clone the repository into the IDE of your choice (make sure that it is compatible with React)
