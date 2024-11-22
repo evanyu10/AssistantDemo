@@ -1,4 +1,4 @@
-#Thank you for checking out my demo!
+#Thank you for checking out my demo!#
 If you would like to try it, here are the steps to get it up and running.
 
 1. Clone the repository into the IDE of your choice (make sure that it is compatible with React)
@@ -9,5 +9,5 @@ If you would like to try it, here are the steps to get it up and running.
 6. To run the program run this command in terminal: npm run dev
 7. Open a browser and type this URL: localhost:3000
 
-#If you have any questions, inquiries, or need any web consulting, please check out www.evanyu.tech!
+#If you have any questions, inquiries, or need any web consulting, please check out www.evanyu.tech!#
 
